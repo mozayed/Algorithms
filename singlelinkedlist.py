@@ -58,4 +58,31 @@ class Node:
 
         return left_pointer.value
 
+    def deleteNode(self,n):
+        # deleting a node n from the linked list assuming our node is the head
+
+        if self == n:
+        self.nextnode = None
+        self = None
+        return 'Deleted the head node {}'.format(self.name)
+    
+        if n.nextnode == None:
+            while self.nextnode:
+                if self.nextnode == n:
+                    self.nextnode = None
+                    break
+                self = self.nextnode
+            return 'Node {} has been deleted'.format(n.name)
+    
+        while self.nextnode:
+            if self.nextnode == n:
+                temp = self.nextnode.nextnode
+                n.nextnode = None
+                self.nextnode = temp
+                    
+            self = self.nextnode
+        
+    
+        return ' Node {} has been deleted'.format(n.name) 
+
         
