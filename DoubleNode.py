@@ -1,11 +1,14 @@
 class DoubleNode:
-	
-	def __init__(self,value):
-		self.value = value
-		self.nextnode = None
-		self.prevnode = None
-
-	def printNode(self):
+    
+    available_nodes = []
+    def __init__(self,name,value):
+        self.name = name
+        self.value = value
+        self.nextnode = None
+        self.prevnode = None
+        DoubleNode.available_nodes.append(self)
+        
+    def printNode(self):
         
         if self.nextnode and self.prevnode:
             
