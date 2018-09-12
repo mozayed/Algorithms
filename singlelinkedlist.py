@@ -85,4 +85,29 @@ class Node:
     
         return ' Node {} has been deleted'.format(n.name) 
 
+    def arrangeNodes(self):
+        # Assuming we are at the head node for an even linked list like a1->a2->a3
+        # ->an-b1->b2-->bn and you want to arrange the linked list to be
+        # a1->b1->a2->b2-->an->bn
+        
+        fast_pointer = self
+        slow_pointer = self
+        
+        while fast_pointer != None and fast_pointer.nextnode.nextnode != None:
+            slow_pointer = slow_pointer.nextnode
+            fast_pointer = fast_pointer.nextnode.nextnode
+        
+        fast_pointer = self
+        slow_pointer = slow_pointer.nextnode
+        
+        while slow_pointer != None and slow_pointer.nextnode != None:
+            
+            temp_fast = fast_pointer.nextnode
+            temp_slow = slow_pointer.nextnode
+            fast_pointer.nextnode = slow_pointer
+            slow_pointer.nextnode = temp_fast
+            slow_pointer = temp_slow
+            fast_pointer = temp_fast
+        
+        fast_pointer.nextnode = slow_pointer
         
