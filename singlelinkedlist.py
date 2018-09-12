@@ -1,6 +1,7 @@
 class Node:
 
-    def __init__(self,value):
+    def __init__(self,name,value):
+        self.name = name
         self.value = value
         self.nextnode = None
 
@@ -62,8 +63,8 @@ class Node:
         # deleting a node n from the linked list assuming our node is the head
 
         if self == n:
-        self.nextnode = None
-        self = None
+            self.nextnode = None
+            self = None
         return 'Deleted the head node {}'.format(self.name)
     
         if n.nextnode == None:
@@ -111,3 +112,21 @@ class Node:
         
         fast_pointer.nextnode = slow_pointer
         
+    def remove_dup(self):
+        # Assuming the head node, this method delete duplicate values from the linked list
+        # and relink the correct nodes together
+        
+        slow_pointer = self
+        fast_pointer = self.nextnode
+        
+        while fast_pointer != None and fast_pointer.nextnode != None:
+            
+            if slow_pointer.value == fast_pointer.value:
+                temp = fast_pointer
+                fast_pointer = fast_pointer.nextnode
+                slow_pointer.nextnode = fast_pointer
+                temp.nextnode = None
+                
+            else:
+                slow_pointer = slow_pointer.nextnode
+                fast_pointer = fast_pointer.nextnode
